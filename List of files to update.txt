@@ -1,3 +1,4 @@
 package.json
 Chrome/manifest.json
 lib/Reddit-Enhancement-Suite.js
+XPI/package.json

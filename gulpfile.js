@@ -43,6 +43,14 @@ gulp.task('safariimg', ['rootimagessafari']);
 
 gulp.task('safarimove', ['safarimove1', 'safarimove2', 'safarimove3', 'safarimove4']);
 
+//Firefox subtasks
+
+gulp.task('firefoxcss', ['modulecssfirefox', 'corecssfirefox', 'vendorcssfirefox']);
+
+gulp.task('firefoxjs', ['modulesjsfirefox', 'corejsfirefox', 'vendorjsfirefox', 'datajsfirefox', 'libjsfirefox2', 'libjsfirefox']);
+
+gulp.task('firefoximg', ['rootimagesfirefox']);
+
 //This kills the CPU
 
 gulp.task('zipall', ['chromezip', 'safarizip']);
@@ -193,6 +201,62 @@ gulp.task('safarimove3', function() {
 gulp.task('safarimove4', function() { 
 	return gulp.src('RES.safariextension/info.plist')
 		.pipe(gulp.dest('dist/safari'))
+});
+
+//Firefox Tasks
+
+gulp.task('modulecssfirefox', function() {
+	return gulp.src('lib/modules/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/firefox/modules'))
+});
+
+gulp.task('corecssfirefox', function() {
+	return gulp.src('lib/core/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/firefox/core'))
+});
+
+gulp.task('vendorcssfirefox', function() {
+	return gulp.src('lib/vendor/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/firefox/vendor'))
+});
+
+gulp.task('libjsfirefox', function() {
+	return gulp.src('lib/*.js')
+		.pipe(gulp.dest('dist/firefox'))
+});
+
+gulp.task('libjsfirefox2', function() {
+	return gulp.src('XPI/lib/*.js')
+		.pipe(gulp.dest('dist/firefox/lib'))
+});
+
+gulp.task('datajsfirefox', function() {
+	return gulp.src('XPI/data/*.js')
+		.pipe(gulp.dest('dist/firefox/data'))
+});
+
+gulp.task('vendorjsfirefox', function() {
+	return gulp.src('lib/vendor/*.js')
+		.pipe(gulp.dest('dist/firefox/vendor'))
+});
+
+gulp.task('corejsfirefox', function() {
+	return gulp.src('lib/core/*.js')
+		.pipe(gulp.dest('dist/firefox/core'))
+});
+
+gulp.task('modulesjsfirefox', function() {
+	return gulp.src('lib/modules/*.js')
+		.pipe(gulp.dest('dist/firefox/modules'))
+});
+
+gulp.task('rootimagesfirefox', function() {
+  return gulp.src('*.png')
+    .pipe(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true }))
+    .pipe(gulp.dest('dist/firefox'))
 });
 
 //Zip Tasks
