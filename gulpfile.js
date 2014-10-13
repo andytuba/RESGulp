@@ -23,6 +23,8 @@ gulp.task('chrome', ['chromecss', 'chromejs', 'chromeimg', 'chromemove']);
 
 gulp.task('safari', ['safaricss', 'safarijs', 'safariimg', 'safarimove']);
 
+gulp.task('firefox', ['firefoxcss', 'firefoxjs', 'firefoximg', 'firefoxmove']);
+
 //Chrome subtasks. They run subsubtasks
 
 gulp.task('chromemove', ['chromemove1', 'chromemove2', 'chromemove3', 'chromemove4']);
@@ -51,11 +53,13 @@ gulp.task('firefoxjs', ['modulesjsfirefox', 'corejsfirefox', 'vendorjsfirefox', 
 
 gulp.task('firefoximg', ['rootimagesfirefox']);
 
+gulp.task('firefoxmove', ['firefoxmove1', 'firefoxmove2']);
+
 //This kills the CPU
 
-gulp.task('zipall', ['chromezip', 'safarizip']);
+gulp.task('zipall', ['chromezip', 'safarizip', 'firefoxzip']);
 
-//Chrome Tasks
+//Chrome Low-Level Tasks
 
 gulp.task('modulecsschrome', function() {
 	return gulp.src('lib/modules/*.css')
@@ -132,7 +136,7 @@ gulp.task('chromemove4', function() {
 		.pipe(gulp.dest('dist/chrome'))
 });
 
-// Safari Tasks
+// Safari Low-Level Tasks
 
 gulp.task('modulecsssafari', function() {
 	return gulp.src('lib/modules/*.css')
@@ -203,7 +207,7 @@ gulp.task('safarimove4', function() {
 		.pipe(gulp.dest('dist/safari'))
 });
 
-//Firefox Tasks
+//Firefox Low-Level Tasks
 
 gulp.task('modulecssfirefox', function() {
 	return gulp.src('lib/modules/*.css')
@@ -259,6 +263,16 @@ gulp.task('rootimagesfirefox', function() {
     .pipe(gulp.dest('dist/firefox'))
 });
 
+gulp.task('firefoxmove1', function() { //move other stuff that doesn't fit elsewhere
+	return gulp.src('lib/core/*.html')
+		.pipe(gulp.dest('dist/firefox/core'))
+});
+
+gulp.task('firefoxmove2', function() { 
+	return gulp.src('XPI/package.json')
+		.pipe(gulp.dest('dist/firefox'))
+});
+
 //Zip Tasks
 
 gulp.task('chromezip', function() {
@@ -270,6 +284,12 @@ gulp.task('chromezip', function() {
 gulp.task('safarizip', function() {
 	return gulp.src('dist/safari/**/*')
 		.pipe(zip('safari.zip'))
+		.pipe(gulp.dest('../../../var/www/html'))
+});
+
+gulp.task('firefoxzip', function() {
+	return gulp.src('dist/firefox/**/*')
+		.pipe(zip('firefox.zip'))
 		.pipe(gulp.dest('../../../var/www/html'))
 });
 
