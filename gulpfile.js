@@ -283,7 +283,7 @@ gulp.task('chromezip', function() {
 
 gulp.task('safarizip', function() {
 	return gulp.src('dist/safari/**/*')
-		.pipe(zip('safari.zip'))
+		.pipe(zip('safari.safariextension.zip'))
 		.pipe(gulp.dest('../../../var/www/html'))
 });
 
