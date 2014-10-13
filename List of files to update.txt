@@ -1,0 +1,3 @@
+package.json
+Chrome/manifest.json
+lib/Reddit-Enhancement-Suite.js
