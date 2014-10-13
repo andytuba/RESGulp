@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 // What happens when you do gulp without any arguments
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('chrome', 'safari');
+    gulp.start('chrome', 'safari', 'firefox');
 });
 
 //Browser task runs subtasks
