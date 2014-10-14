@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
-    cache = require('gulp-cache'),
     del = require('del'),
     bump = require('gulp-bump'),
     zip = require('gulp-zip');
@@ -124,7 +123,7 @@ gulp.task('rootimageschrome', function() {
 
 gulp.task('imagesimageschrome', function() { //yo dog
   return gulp.src('Chrome/images/*.png')
-    .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
+    .pipe(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true }))
     .pipe(gulp.dest('dist/chrome/images'))
 });
 
@@ -338,7 +337,7 @@ gulp.task('rootimagesoblink', function() {
 
 gulp.task('imagesimagesoblink', function() { 
   return gulp.src('OperaBlink/images/*.png')
-    .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
+    .pipe(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true }))
     .pipe(gulp.dest('dist/oblink/images'))
 });
 
