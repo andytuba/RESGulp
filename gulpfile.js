@@ -6,9 +6,9 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
-    cache = require('gulp-cache'),,
+    cache = require('gulp-cache'),
     del = require('del'),
-    bump = require('gulp-bump');
+    bump = require('gulp-bump'),
     zip = require('gulp-zip');
     
 // What happens when you do gulp without any arguments
