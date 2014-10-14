@@ -6,15 +6,15 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
-    cache = require('gulp-cache'),
-    livereload = require('gulp-livereload'),
+    cache = require('gulp-cache'),,
     del = require('del'),
-	bump = require('gulp-bump');
-	zip = require('gulp-zip');
+    bump = require('gulp-bump');
+    zip = require('gulp-zip');
+    
 // What happens when you do gulp without any arguments
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('chrome', 'safari', 'firefox');
+    gulp.start('chrome', 'safari', 'firefox', 'oblink');
 });
 
 //Browser task runs subtasks
@@ -24,6 +24,8 @@ gulp.task('chrome', ['chromecss', 'chromejs', 'chromeimg', 'chromemove']);
 gulp.task('safari', ['safaricss', 'safarijs', 'safariimg', 'safarimove']);
 
 gulp.task('firefox', ['firefoxcss', 'firefoxjs', 'firefoximg', 'firefoxmove']);
+
+gulp.task('oblink', ['oblinkcss', 'oblinkjs', 'oblinkimg', 'oblinkmove']);
 
 //Chrome subtasks. They run subsubtasks
 
@@ -55,9 +57,19 @@ gulp.task('firefoximg', ['rootimagesfirefox']);
 
 gulp.task('firefoxmove', ['firefoxmove1', 'firefoxmove2']);
 
+//OperaBlink subtasks
+
+gulp.task('oblinkcss', ['modulecssoblink', 'corecssoblink', 'vendorcssoblink']);
+
+gulp.task('oblinkjs', ['libjsoblink', 'vendorjsoblink', 'corejsoblink', 'modulesjsoblink', 'oblinkjsoblink']);
+
+gulp.task('oblinkimg', ['rootimagesoblink', 'imagesimagesoblink']);
+
+gulp.task('oblinkmove', ['oblinkmove1', 'oblinkmove2', 'oblinkmove3']);
+
 //This kills the CPU
 
-gulp.task('zipall', ['chromezip', 'safarizip', 'firefoxzip']);
+gulp.task('zipall', ['chromezip', 'safarizip', 'firefoxzip', 'oblinkzip']);
 
 //Chrome Low-Level Tasks
 
@@ -273,6 +285,78 @@ gulp.task('firefoxmove2', function() {
 		.pipe(gulp.dest('dist/firefox'))
 });
 
+//OperaBlink Low-Level Tasks
+
+gulp.task('modulecssoblink', function() {
+	return gulp.src('lib/modules/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/oblink/modules'))
+});
+
+gulp.task('corecssoblink', function() {
+	return gulp.src('lib/core/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/oblink/core'))
+});
+
+gulp.task('vendorcssoblink', function() {
+	return gulp.src('lib/vendor/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/oblink/vendor'))
+});
+
+gulp.task('libjsoblink', function() {
+	return gulp.src('lib/*.js')
+		.pipe(gulp.dest('dist/oblink'))
+});
+
+gulp.task('vendorjsoblink', function() {
+	return gulp.src('lib/vendor/*.js')
+		.pipe(gulp.dest('dist/oblink/vendor'))
+});
+
+gulp.task('corejsoblink', function() {
+	return gulp.src('lib/core/*.js')
+		.pipe(gulp.dest('dist/oblink/core'))
+});
+
+gulp.task('modulesjsoblink', function() {
+	return gulp.src('lib/modules/*.js')
+		.pipe(gulp.dest('dist/oblink/modules'))
+});
+
+gulp.task('oblinkjsoblink', function() {
+	return gulp.src('OperaBlink/*.js')
+		.pipe(gulp.dest('dist/oblink'))
+});
+
+gulp.task('rootimagesoblink', function() {
+  return gulp.src('OperaBlink/*.png')
+    .pipe(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true }))
+    .pipe(gulp.dest('dist/oblink'))
+});
+
+gulp.task('imagesimagesoblink', function() { 
+  return gulp.src('OperaBlink/images/*.png')
+    .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
+    .pipe(gulp.dest('dist/oblink/images'))
+});
+
+gulp.task('oblinkmove1', function() { //move other stuff that doesn't fit elsewhere
+	return gulp.src('lib/core/*.html')
+		.pipe(gulp.dest('dist/oblink/core'))
+});
+
+gulp.task('oblinkmove2', function() {
+	return gulp.src('OperaBlink/*.json')
+		.pipe(gulp.dest('dist/oblink'))
+});
+
+gulp.task('oblinkmove3', function() { 
+	return gulp.src('package.json')
+		.pipe(gulp.dest('dist/oblink'))
+});
+
 //Zip Tasks
 
 gulp.task('chromezip', function() {
@@ -290,6 +374,12 @@ gulp.task('safarizip', function() {
 gulp.task('firefoxzip', function() {
 	return gulp.src('dist/firefox/**/*')
 		.pipe(zip('firefox.zip'))
+		.pipe(gulp.dest('../../../var/www/html'))
+});
+
+gulp.task('oblinkzip', function() {
+	return gulp.src('dist/oblink/**/*')
+		.pipe(zip('operablink.zip'))
 		.pipe(gulp.dest('../../../var/www/html'))
 });
 
