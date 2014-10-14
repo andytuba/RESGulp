@@ -1,4 +1,8 @@
-package.json
-Chrome/manifest.json
-lib/Reddit-Enhancement-Suite.js
-XPI/package.json
+ Chrome/manifest.json
+ Opera/config.xml
+ OperaBlink/manifest.json
+ RES.safariextension/Info.plist
+ XPI/package.json
+ lib/reddit_enhancement_suite.user.js
+ package.json
+ utils/changelog.js
