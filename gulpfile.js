@@ -1,3 +1,5 @@
+//Please Read README.md or gulpreadme.md to understand what is going on!
+
 var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
@@ -12,7 +14,7 @@ var gulp = require('gulp'),
 // What happens when you do gulp without any arguments
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('chrome', 'safari', 'firefox', 'oblink');
+    gulp.start('chrome', 'safari', 'firefox', 'oblink', 'opera');
 });
 
 //Browser task runs subtasks
@@ -24,6 +26,8 @@ gulp.task('safari', ['safaricss', 'safarijs', 'safariimg', 'safarimove']);
 gulp.task('firefox', ['firefoxcss', 'firefoxjs', 'firefoximg', 'firefoxmove']);
 
 gulp.task('oblink', ['oblinkcss', 'oblinkjs', 'oblinkimg', 'oblinkmove']);
+
+gulp.task('opera', ['operacss', 'operajs', 'operaimg', 'operamove']);
 
 //Chrome subtasks. They run subsubtasks
 
@@ -65,9 +69,19 @@ gulp.task('oblinkimg', ['rootimagesoblink', 'imagesimagesoblink']);
 
 gulp.task('oblinkmove', ['oblinkmove1', 'oblinkmove2', 'oblinkmove3']);
 
+//Opera subtasks
+
+gulp.task('operacss', ['modulecssopera', 'corecssopera', 'vendorcssopera']);
+
+gulp.task('operajs', ['libjsopera', 'vendorjsopera', 'corejsopera', 'modulesjsopera', 'operajsopera', 'includesjsopera']);
+
+gulp.task('operaimg', ['rootimagesopera']);
+
+gulp.task('operamove', ['operamove1', 'operamove2', 'operamove3', 'operamove4']);
+
 //This kills the CPU
 
-gulp.task('zipall', ['chromezip', 'safarizip', 'firefoxzip', 'oblinkzip']);
+gulp.task('zipall', ['chromezip', 'safarizip', 'firefoxzip', 'oblinkzip', 'operazip']);
 
 //Chrome Low-Level Tasks
 
@@ -355,6 +369,83 @@ gulp.task('oblinkmove3', function() {
 		.pipe(gulp.dest('dist/oblink'))
 });
 
+//Opera Low-Level Tasks (Old)
+
+gulp.task('modulecssopera', function() {
+	return gulp.src('lib/modules/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/opera/modules'))
+});
+
+gulp.task('corecssopera', function() {
+	return gulp.src('lib/core/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/opera/core'))
+});
+
+gulp.task('vendorcssopera', function() {
+	return gulp.src('lib/vendor/*.css')
+   	 	.pipe(minifycss())
+   		.pipe(gulp.dest('dist/opera/vendor'))
+});
+
+gulp.task('libjsopera', function() {
+	return gulp.src('lib/*.js')
+		.pipe(gulp.dest('dist/opera'))
+});
+
+gulp.task('vendorjsopera', function() {
+	return gulp.src('lib/vendor/*.js')
+		.pipe(gulp.dest('dist/opera/vendor'))
+});
+
+gulp.task('corejsopera', function() {
+	return gulp.src('lib/core/*.js')
+		.pipe(gulp.dest('dist/opera/core'))
+});
+
+gulp.task('modulesjsopera', function() {
+	return gulp.src('lib/modules/*.js')
+		.pipe(gulp.dest('dist/opera/modules'))
+});
+
+gulp.task('operajsopera', function() {
+	return gulp.src('Opera/*.js')
+		.pipe(gulp.dest('dist/opera'))
+});
+
+gulp.task('includesjsopera', function() {
+	return gulp.src('Opera/includes/*.js')
+		.pipe(gulp.dest('dist/opera/includes'))
+});
+
+gulp.task('rootimagesopera', function() {
+  return gulp.src('OperaBlink/*.gif')
+    .pipe(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true }))
+    .pipe(gulp.dest('dist/opera'))
+});
+
+gulp.task('operamove1', function() { //move other stuff that doesn't fit elsewhere
+	return gulp.src('lib/core/*.html')
+		.pipe(gulp.dest('dist/opera/core'))
+});
+
+gulp.task('operamove2', function() {
+	return gulp.src('Opera/*.html')
+		.pipe(gulp.dest('dist/opera'))
+});
+
+gulp.task('operamove3', function() {
+	return gulp.src('Opera/*.xml')
+		.pipe(gulp.dest('dist/opera'))
+});
+
+gulp.task('operamove4', function() {
+	return gulp.src('package.json')
+		.pipe(gulp.dest('dist/opera'))
+});
+
+
 //Zip Tasks
 
 gulp.task('chromezip', function() {
@@ -378,6 +469,12 @@ gulp.task('firefoxzip', function() {
 gulp.task('oblinkzip', function() {
 	return gulp.src('dist/oblink/**/*')
 		.pipe(zip('operablink.zip'))
+		.pipe(gulp.dest('../../../var/www/html'))
+});
+
+gulp.task('operazip', function() {
+	return gulp.src('dist/opera/**/*')
+		.pipe(zip('opera.zip'))
 		.pipe(gulp.dest('../../../var/www/html'))
 });
 
