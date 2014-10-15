@@ -1,8 +1,0 @@
- Chrome/manifest.json
- Opera/config.xml
- OperaBlink/manifest.json
- RES.safariextension/Info.plist
- XPI/package.json
- lib/reddit_enhancement_suite.user.js
- package.json
- utils/changelog.js
