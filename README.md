@@ -29,7 +29,7 @@ npm install --global gulp
 
 7. Run
 
-    npm install--save-dev gulp-minify-css gulp-uglify gulp-imagemin gulp-rename gulp-concat gulp-notify del gulp-bump gulp-zip
+    npm install --save-dev gulp-minify-css gulp-uglify gulp-imagemin gulp-rename gulp-concat gulp-notify del gulp-bump gulp-zip
 
 8. Move gulpfile.js into your RES directory
 
@@ -59,7 +59,7 @@ Builds for just the selected browser. Note this does not clean out the dist dire
 
 Want to zip up your files? Tasks exist for this, but you will need to edit gulpfile.js
 
-Open gulpfile.js with your favorite text editor (that can handle js)
+Open gulpfile.js with your favourite text editor (that can handle js)
 
 Scroll down until you see "//Zip Tasks"
 
