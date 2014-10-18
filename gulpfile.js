@@ -451,31 +451,31 @@ gulp.task('operamove4', function() {
 gulp.task('chromezip', function() {
 	return gulp.src('dist/chrome/**/*')
 		.pipe(zip('chrome.zip'))
-		.pipe(gulp.dest('../../../var/www/html'))
+		.pipe(gulp.dest('../../../var/www/html/res/dl'))
 });
 
 gulp.task('safarizip', function() {
 	return gulp.src('dist/safari/**/*')
 		.pipe(zip('safari.safariextension.zip'))
-		.pipe(gulp.dest('../../../var/www/html'))
+		.pipe(gulp.dest('../../../var/www/html/res/dl'))
 });
 
 gulp.task('firefoxzip', function() {
 	return gulp.src('dist/firefox/**/*')
 		.pipe(zip('firefox.zip'))
-		.pipe(gulp.dest('../../../var/www/html'))
+		.pipe(gulp.dest('../../../var/www/html/res/dl'))
 });
 
 gulp.task('oblinkzip', function() {
 	return gulp.src('dist/oblink/**/*')
 		.pipe(zip('operablink.zip'))
-		.pipe(gulp.dest('../../../var/www/html'))
+		.pipe(gulp.dest('../../../var/www/html/res/dl'))
 });
 
 gulp.task('operazip', function() {
 	return gulp.src('dist/opera/**/*')
 		.pipe(zip('opera.zip'))
-		.pipe(gulp.dest('../../../var/www/html'))
+		.pipe(gulp.dest('../../../var/www/html/res/dl'))
 });
 
 //Other
