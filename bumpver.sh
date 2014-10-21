@@ -11,7 +11,7 @@ echo
  
 export curver
 export nextver
-expot SOURCE_DIR
+export SOURCE_DIR
  
 perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/Chrome/manifest.json"
 perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/Opera/config.xml"
