@@ -13,13 +13,13 @@ export curver
 export nextver
 export SOURCE_DIR
  
-perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/Chrome/manifest.json"
-perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/Opera/config.xml"
-perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/OperaBlink/manifest.json"
-perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/RES.safariextension/Info.plist"
-perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/XPI/package.json"
-perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/lib/reddit_enhancement_suite.user.js"
-perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' "$ENV{SOURCE_DIR}/package.json"
+perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' $SOURCE_DIR/Chrome/manifest.json
+perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' $SOURCE_DIR/Opera/config.xml
+perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' $SOURCE_DIR/OperaBlink/manifest.json
+perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' $SOURCE_DIR/RES.safariextension/Info.plist
+perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' $SOURCE_DIR/XPI/package.json
+perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' $SOURCE_DIR/lib/reddit_enhancement_suite.user.js
+perl -pi -e 's/$ENV{curver}/$ENV{nextver}/g' $SOURCE_DIR/package.json
  
 echo Done
 echo
