@@ -1,7 +1,6 @@
 //Please Read README.md or gulpreadme.md to understand what is going on!
 
 var gulp = require('gulp'),
-    minifycss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
@@ -87,19 +86,16 @@ gulp.task('zipall', ['chrome-zip', 'safari-zip', 'firefox-zip', 'oblink-zip', 'o
 
 gulp.task('module-css-chrome', function() {
 	return gulp.src('lib/modules/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/chrome/modules'))
 });
 
 gulp.task('core-css-chrome', function() {
 	return gulp.src('lib/core/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/chrome/core'))
 });
 
 gulp.task('vendor-css-chrome', function() {
 	return gulp.src('lib/vendor/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/chrome/vendor'))
 });
 
@@ -164,19 +160,16 @@ gulp.task('chrome-move-4', function() {
 
 gulp.task('module-css-safari', function() {
 	return gulp.src('lib/modules/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/safari/modules'))
 });
 
 gulp.task('core-css-safari', function() {
 	return gulp.src('lib/core/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/safari/core'))
 });
 
 gulp.task('vendor-css-safari', function() {
 	return gulp.src('lib/vendor/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/safari/vendor'))
 });
 
@@ -235,19 +228,16 @@ gulp.task('safari-move-4', function() {
 
 gulp.task('module-css-firefox', function() {
 	return gulp.src('lib/modules/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/firefox/modules'))
 });
 
 gulp.task('core-css-firefox', function() {
 	return gulp.src('lib/core/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/firefox/core'))
 });
 
 gulp.task('vendor-css-firefox', function() {
 	return gulp.src('lib/vendor/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/firefox/vendor'))
 });
 
@@ -301,19 +291,16 @@ gulp.task('firefox-move-2', function() {
 
 gulp.task('module-css-oblink', function() {
 	return gulp.src('lib/modules/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/oblink/modules'))
 });
 
 gulp.task('core-css-oblink', function() {
 	return gulp.src('lib/core/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/oblink/core'))
 });
 
 gulp.task('vendor-css-oblink', function() {
 	return gulp.src('lib/vendor/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/oblink/vendor'))
 });
 
@@ -373,19 +360,16 @@ gulp.task('oblink-move-3', function() {
 
 gulp.task('module-css-opera', function() {
 	return gulp.src('lib/modules/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/opera/modules'))
 });
 
 gulp.task('core-css-opera', function() {
 	return gulp.src('lib/core/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/opera/core'))
 });
 
 gulp.task('vendor-css-opera', function() {
 	return gulp.src('lib/vendor/*.css')
-   	 	.pipe(minifycss())
    		.pipe(gulp.dest('dist/opera/vendor'))
 });
 
